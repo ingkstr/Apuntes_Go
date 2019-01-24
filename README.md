@@ -49,9 +49,9 @@ Debemos ir a la localidad de nuestro proyecto
 
 Un "homa mundo sería de la siguiente manera
 
-> touch hello.go
+> touch 01_hello.go
 
-> vi hello.go
+> vi 02_hello.go
 
 ```
 package main 
@@ -67,13 +67,13 @@ Se pueden ejecutar de dos maneras.
 
  - `Interpretado` - Lo ejecuta en el momento
 
-> go run main.go 
+> go run 01_hello.go 
 
  - `Compilado` - Genera un archivo sin extensión con el mismo nombre
 
-> go build main.go
+> go build 01_hello.go
 
-> ./main
+> ./01_hello
 
 ## Recibir valores de teclado ##
 
@@ -85,7 +85,9 @@ var VARIABLE *TIPO_VARIABLE*
 
 Se usa `scanf` para permitir entrada en teclado
 
-> touch variables1.go ; vi variables1.go
+> touch 02_entrada_datos.go
+
+> 02_entrada_datos.go
 
 ```
 package main 
@@ -143,6 +145,8 @@ const testCont = "Text"
 
 Siendo así, tendríamos un programa como este
 
+> vi 03_variables-constantes.go
+
 ```
 package main
 
@@ -177,4 +181,52 @@ Ingresa tu apellido:Castelan
 OK!
 Hola Emanuel Castelan, Bienvenido al fascinante mundo de Go
 100 1 2 3
+```
+
+## Funciones ##
+
+Se usa la palabra reservada `func`, seguido del nomnbre de la función y finaliza con el tipo de variable.
+
+```
+func getName() string {
+  var name string
+  name = "Sin nombre"
+  fmt.Print ("Ingresa tu nombre:")
+  fmt.Scanf("%s",&name)
+  return name
+}
+```
+
+Esta se puede mandar llamar de la siguiente manera
+
+```
+name := getName()
+```
+
+Se pueden hacer una función que devuelva más de un valor
+
+```
+func getVariables() (int, int, int){
+  return 1,2,3
+}
+```
+
+Se mandaría llamar de la siguiente manera
+
+```
+a, b, c := getVariables()
+```
+
+Para tener funciones con argumentos, se hace algo como esto
+
+```
+func sum(a int, b int) int {
+  return a + b
+}
+```
+
+Y se invoca de la siguiente manera
+
+```
+number := sum(50, 50)
 ```
