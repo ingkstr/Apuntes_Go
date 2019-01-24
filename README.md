@@ -8,6 +8,7 @@ CURSO DE GO
  * [Hola mundo](#hola-mundo)
  * [Recibir valores de teclado](#Recibir-valores-de-teclado)
  * [Variables y constantes](#variables-y-constantes)
+ * [Funciones](#funciones)
 
 ## Instalación en Ubuntu ##
 
