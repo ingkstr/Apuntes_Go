@@ -9,6 +9,11 @@ CURSO DE GO
  * [Recibir valores de teclado](#Recibir-valores-de-teclado)
  * [Variables y constantes](#variables-y-constantes)
  * [Funciones](#funciones)
+ * [Datos numéricos](#Datos-numéricos)
+ * [Cadenas de texto](#Cadenas-de-texto)
+ * [Array y Slice](#Array-y-Slice)
+ * [Condicionales](#Condicionales)
+ * [For break](#For-break)
 
 ## Instalación en Ubuntu ##
 
@@ -32,11 +37,11 @@ source ~/.bash_profile
 
 Hay que armar un esquema de carpetas similar a este.
 
-go 
+go
 
-└── src 
+└── src
 
-    └── github.com 
+    └── github.com
 
         └── USUARIO
 
@@ -55,12 +60,12 @@ Un "homa mundo sería de la siguiente manera
 > vi 02_hello.go
 
 ```
-package main 
+package main
 
-import "fmt" 
+import "fmt"
 
-func main() { 
-  fmt.Print("Hello Go!!!") 
+func main() {
+  fmt.Print("Hello Go!!!")
 }
 ```
 
@@ -68,7 +73,7 @@ Se pueden ejecutar de dos maneras.
 
  - `Interpretado` - Lo ejecuta en el momento
 
-> go run 01_hello.go 
+> go run 01_hello.go
 
  - `Compilado` - Genera un archivo sin extensión con el mismo nombre
 
@@ -91,16 +96,16 @@ Se usa `scanf` para permitir entrada en teclado
 > 02_entrada_datos.go
 
 ```
-package main 
+package main
 
 import "fmt"
 
-func main() { 
-  var name string 
-  fmt.Print ("Ingresa tu nombre:") 
-  fmt.Scanf("%s",&name) 
+func main() {
+  var name string
+  fmt.Print ("Ingresa tu nombre:")
+  fmt.Scanf("%s",&name)
   fmt.Println("OK!")
-  fmt.Printf("Welcome %s to Go!!!\n",name) 
+  fmt.Printf("Welcome %s to Go!!!\n",name)
 }
 ```
 
@@ -231,3 +236,150 @@ Y se invoca de la siguiente manera
 ```
 number := sum(50, 50)
 ```
+## Datos numéricos ##
+
+ * `int` : 32 bits comprendiendo la mitad para positivos como negativos
+ * `unint` : 32 bits partiendo de cero
+ * `int32` : Enteros de 32 bits
+ * `int64` : Enteros de 64 bits
+ * `float32` : Valor flotante cerrado a 32 bits  
+ * `float64` : Valor más preciso usando 64 bits
+
+## Cadenas de texto ##
+
+ Unicode es el tipo de codificación de texto default en Go. Por lo que puede usar textos con acentos, caracteres especiales y japones.
+
+ ```
+ func main() {
+   fmt.Println("もしもし!")
+ }
+```
+
+Obtenemos lo siguiente:
+
+```
+もしもし!
+```
+
+Las cadenas son conformadas por bytes uno a uno. Para llamar a cada uno, se toma en cuenta como un arreglo.
+
+> fmt.Println("hola"[0]) // Devuelve "104" ya que maneja ascii
+
+> fmt.Println(string("hola"[0])) // Devuelve "h"
+
+Para obtener la longitud
+
+> fmt.Println(len("hola")) // Devuelve "4"
+
+
+## Array y Slice ##
+
+Ambas son estructuras de datos con valores del mismo tipo.
+
+ * `Array` : Siempre tiene un tamaño fijo. No se puede expandir.
+
+Se declara de las siguientes dos maneras
+
+```
+var arreglo_texto [2] string
+arreglo_ints := [3] int {3,6,9}
+```
+
+Para asignar valores, se hace lo siguiente
+
+```
+  arreglo_texto[0] = "texto1"
+  arreglo_texto[1] = "texto2"
+```
+
+ * `Slice` : Su tamaño es dinámico
+
+Se declara de la siguiente manera solamente
+
+```
+var slice_texto [] string
+```
+
+La forma de cargarle información es la siguiente
+
+```
+slice_texto = append(slice_texto, "esto","es","1","slice")
+```
+
+## Condicionales ##
+
+La sintaxis usada es
+
+```
+if [condicion] {
+  //instrucciones
+} else {
+  //instrucciones
+}
+```
+
+También se vale anidad Condicionales
+
+```
+if [condicion] {
+  //instrucciones
+} else if [condicion2] {
+  //instrucciones
+}
+```
+
+Igual se puede asignar valor en el mismo if
+
+```
+if variable := 2 ; variable == 4 {
+  fmt.Println("Se cumple")
+}
+```
+
+## For break ##
+
+En Go no existe los bucles while ni do-while. Solo existe el `for`
+
+La sintaxis es la siguientes
+
+```
+for VARIABLE := VALOR; CONDICION_FIN ; INCREMENTO {
+  //Inatrucciones
+}
+```
+
+Ejemplo
+
+```
+for i := 0 ; i < 5 ; i ++ {
+  fmt.Println("Valor es: ",i)
+}
+```
+
+Es posible usar un for sin declaración inicial ni incremento.
+
+Ejemplo
+
+```
+c := 10
+
+for ;c > 5 ; {
+  c -= 2
+  fmt.Println("c vale ",c)
+}
+```
+
+Se puede manejar un bucle infinito, siempre que haya una condición que la acabe con un ` break`
+
+ ```
+ s := 1000
+
+ for {
+   s -= 1
+   if (s == 0){
+     fmt.Println("BREAK!!!")
+     break
+   }
+
+ }
+ ```
