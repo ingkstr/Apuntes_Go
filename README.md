@@ -14,6 +14,7 @@ CURSO DE GO
  * [Array y Slice](#Array-y-Slice)
  * [Condicionales](#Condicionales)
  * [For break](#For-break)
+ * [Funciones con strings](#Funciones-con-strings)
 
 ## Instalación en Ubuntu ##
 
@@ -381,5 +382,97 @@ Se puede manejar un bucle infinito, siempre que haya una condición que la acabe
      break
    }
 
- } 
+ }
  ```
+
+## Funciones con strings ##
+
+Es importante importar la librería `strings` para usar las Funciones
+
+He aquí algunos ejemplos:
+
+```
+package main
+
+import (
+  "fmt"
+  "strings"
+  )
+
+
+func main() {
+  var text = "Hola mundo. Hola amigos. Hola a todos sus habitantes!"
+  fmt.Println("Texto original: ",text)  //Original
+  fmt.Println("Texto en mayúsculas: ",strings.ToUpper(text))  //Convierte a mayusculas
+  fmt.Println("Texto en minúsculas: ",strings.ToLower(text))  //Convierte a minúsculas
+  fmt.Println("Reemplazo total: ",strings.Replace(text,"Hola","HELLO", -1))  // Remplaza todos los "Hola" por ""HELLO
+  fmt.Println("Reemplazo de la primera coincidencia: ",strings.Replace(text,"Hola","HELLO", 1))  // Remplaza el primer "Hola" por ""HELLO
+  fmt.Println("Reemplazo de las primera y segunda coincidencia: ",strings.Replace(text,"Hola","HELLO", 2))  // Remplaza el segundo "Hola" por ""HELLO
+  separa_espacio := strings.Split(text," ") //Separación por espacios
+  fmt.Println("**********División por espacios************")
+  for i := range separa_espacio {
+    fmt.Println(separa_espacio[i])
+  }
+  separa_punto := strings.Split(text,".") //Separación por puntos
+  fmt.Println("**********División por puntos************")
+  for i := range separa_punto {
+    fmt.Println(separa_punto[i])
+  }
+}
+```
+
+Obtendremos como salida lo siguientes
+
+```
+Texto original:  Hola mundo. Hola amigos. Hola a todos sus habitantes!
+Texto en mayúsculas:  HOLA MUNDO. HOLA AMIGOS. HOLA A TODOS SUS HABITANTES!
+Texto en minúsculas:  hola mundo. hola amigos. hola a todos sus habitantes!
+Reemplazo total:  HELLO mundo. HELLO amigos. HELLO a todos sus habitantes!
+Reemplazo de la primera coincidencia:  HELLO mundo. Hola amigos. Hola a todos sus habitantes!
+Reemplazo de las primera y segunda coincidencia:  HELLO mundo. HELLO amigos. Hola a todos sus habitantes!
+**********División por espacios************
+Hola
+mundo.
+Hola
+amigos.
+Hola
+a
+todos
+sus
+habitantes!
+**********División por puntos************
+Hola mundo
+ Hola amigos
+ Hola a todos sus habitantes!
+```
+
+
+## Switch ##
+
+Es otro tipo de condicional.
+
+La sintaxis es
+
+```
+switch VARIABLE {
+  case VALOR1:
+    //instruccion
+  case VALOR2:
+    //instruccion
+  default:
+    // instrucciones default
+}
+```
+
+Es válido también poner un switch sin declarar la variable y usar Condicionales
+
+```
+switch  {
+  case CONDICION1:
+    //instruccion
+  case CONDICION2:
+    //instruccion
+  default:
+    // instrucciones default
+}
+```
