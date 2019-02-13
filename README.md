@@ -15,6 +15,9 @@ CURSO DE GO
  * [Condicionales](#Condicionales)
  * [For break](#For-break)
  * [Funciones con strings](#Funciones-con-strings)
+ * [Switch](#Switch)
+ * [Manejo de paquetes](#Manejo-de-paquetes)
+ * [Maps](#Maps)
 
 ## Instalación en Ubuntu ##
 
@@ -475,4 +478,87 @@ switch  {
   default:
     // instrucciones default
 }
+```
+## Manejo de paquetes ##
+
+Se crea una carpeta
+
+> mkdir name
+
+Dentro de ella, se crean un archivo `name`
+
+> cd name
+
+> touch name.go
+
+Y llenamos el archivo declarando el package. Las funciones públicas deben empezar en minúsculas si las deseamos privadas. Si se desean públicas, se inician en mayúscylas.
+Es mandatorio poner comentarios de la función iniciando con `//`
+
+```
+package name
+
+import "fmt"
+
+//Getname obtiene y retorna el nombre de una persona
+func GetName() string {
+    var name string
+    fmt.Print("Ingresa tu nombre: ")
+    fmt.Scanf("%s", &name)
+    return name
+}
+```
+
+En la aplicación principal, se importa la librería de la siguiente información
+
+```
+package main
+
+import (
+  "fmt"
+  "./name"
+  )
+
+
+func main(){
+  nombre := name.getName()
+}
+```
+
+## Maps ##
+
+Se trata de un diccionario que maneja llaves y valores.
+
+Se inicializa de la siguiente manera:
+
+```
+mapTest := make(map[string]int)
+```
+
+Se ponen valores de la siguiente manera
+
+```
+mapTest["llave1"] = 2
+mapTest["llave2"] = 100
+```
+
+También se pueden inicializar con valores.
+
+```
+mapTest2  := map[string]int{
+  "Juan":19,
+  "Mario":20,   
+}
+```
+
+Se puede imprimir los valores ya sea todo el mapa o un valor.
+
+```
+fmt.Println("El valor del mapa completo es",mapTest)
+fmt.Println("El valor del mapa en la llave1 es",mapTest["llave1"])
+```
+
+Se eliminan valores con el comando `delete`
+
+```
+delete(mapTest,"llave1")
 ```
