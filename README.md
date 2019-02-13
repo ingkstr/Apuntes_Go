@@ -562,3 +562,123 @@ Se eliminan valores con el comando `delete`
 ```
 delete(mapTest,"llave1")
 ```
+
+## Structs ##
+
+Es un tipo de variable creado por el usuario basado en un conjunto de variables.
+
+```
+type Course struct {
+  Name string
+  Slug string
+  Skills []string
+}
+```
+
+Se inicializa una variable del tipo de nuestro struct de la siguiente manera.
+
+```
+course1 := Course {Name: "Go", Slug: "go", Skills: []string {"programar","abstraccion", "lógica"}}
+```
+
+Otra forma es crear la variable con la palabra reservada `new` e ir declarando los valores uno a Unicode
+
+```
+course2 := new (Course)
+course2.Name = "Java"
+course2.Slug = "java"
+course2.Skills = []string {"c","programar","computacion"}
+```
+
+## Methods ##
+
+Son funciones que se usan dentro de una instancia de Struct.
+
+```
+type Course struct {
+  Name string
+  Slug string
+  Skills []string
+}
+
+//Función que solo funciona en una instancia de Curso
+func (c Course) Subscribe (name string){
+  fmt.Printf("El alumno %s se ha inscrito al curso %s. \n",name,c.Name)
+}
+```
+
+Se ejecuta de la siguiente manera
+
+```
+func main(){
+  course1 := Course {Name: "Go", Slug: "go", Skills: []string {"programar","abstraccion", "lógica"}}
+  course1.Subscribe("Jose")
+  course1.Subscribe("Emanuel")
+}
+```
+
+## Interfaces ##
+
+
+Así se puede hacer herencia de un struct preexistente
+
+```
+type InternalCourse struct {
+  Course
+}
+```
+
+Se pueden declarar la misma función para dos clases.
+
+```
+//Course estructura de curso
+type Course struct {
+  Name string
+  Slug string
+  Skills []string
+}
+
+//Subscribe Función de curso para mostrar quien se ha suscrito
+func (c Course) Subscribe (name string){
+  fmt.Printf("El alumno %s se ha inscrito al curso %s. \n",name,c.Name)
+}
+
+//Carrer estructura de carrera
+type InternalCourse struct {
+  Course
+}
+
+//Subscribe Función de carrera para mostrar quien se ha suscrito
+func (c InternalCourse) Subscribe (name string){
+  fmt.Printf("El alumno %s se ha inscrito al curso interno %s. \n",name,c.Name)
+}
+```
+
+Para diferenciarse entre ellas, se usa una interface.
+
+```
+//Platzi interface de Course y Carrer
+type Platzi interface {
+  Subscribe(name string)
+}
+```
+
+Al final, se puede llamar la función desde Esta
+
+```
+//InterfaceTest Función de pruebe
+func InterfaceTest(){
+  course := Course {Name: "Go", Slug: "go", Skills: []string {"programar","abstraccion", "lógica"}}
+  courseint := new(InternalCourse)
+  courseint.Name = "GoAdv"
+  courseint.Slug = "goadv"
+  courseint.Skills = []string {"programar","abstraccion", "lógica"}
+  callSubscribe(course)
+  callSubscribe(courseint)
+}
+
+//callSubscribe ejecuta una impresion de un usuario
+func callSubscribe(p Platzi){
+  p.Subscribe("Jose")
+}
+```
